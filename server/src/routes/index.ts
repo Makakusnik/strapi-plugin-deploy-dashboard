@@ -1,11 +1,8 @@
-export default [
-  {
-    method: 'GET',
-    path: '/',
-    // name of the controller file & the method.
-    handler: 'controller.index',
-    config: {
-      policies: [],
-    },
+import deploymentRoutes from './deployment';
+
+export default {
+  admin: {
+    type: 'admin',
+    routes: [...deploymentRoutes],
   },
-];
+};
