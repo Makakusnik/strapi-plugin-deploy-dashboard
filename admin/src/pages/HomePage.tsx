@@ -63,31 +63,6 @@ const HomePage = () => {
               </Flex>
             </Flex>
           </Box>
-          <Box background="neutral0" margin={50} width="fit-content" padding={[6, 6]}>
-            <Flex gap={8}>
-              <Flex
-                alignItems="start"
-                direction="column"
-                padding={[4]}
-                style={{
-                  background:
-                    'repeating-linear-gradient(7deg, #32324d, #32324d 18px, transparent 18px, transparent 30px, #32324d 30px), repeating-linear-gradient(97deg, #32324d, #32324d 18px, transparent 18px, transparent 30px, #32324d 30px), repeating-linear-gradient(187deg, #32324d, #32324d 18px, transparent 18px, transparent 30px, #32324d 30px), repeating-linear-gradient(277deg, #32324d, #32324d 18px, transparent 18px, transparent 30px, #32324d 30px)',
-                  backgroundSize: '2px 100%, 100% 2px, 2px 100% , 100% 2px',
-                  backgroundPosition: '0 0, 0 0, 100% 0, 0 100%',
-                  backgroundRepeat: 'no-repeat',
-                }}
-                borderRadius={'3px'}
-                height={'150px'}
-                width={'300px'}
-              >
-                <Flex alignItems="center" width="100%" height="100%" justifyContent="center">
-                  <Button variant="ghost" startIcon={<Plus></Plus>}>
-                    Add new configruation
-                  </Button>
-                </Flex>
-              </Flex>
-            </Flex>
-          </Box>
         </Grid.Root>
       </Box>
     </Main>
