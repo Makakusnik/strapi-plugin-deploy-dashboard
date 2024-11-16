@@ -1,5 +1,6 @@
 import type { Core } from '@strapi/strapi';
 import Instance from '../content-types';
+import { PLUGIN_ID } from '../../../admin/src/pluginId';
 
 type Instance = {
   id: string;
@@ -8,8 +9,8 @@ type Instance = {
 };
 
 const deploymentService = ({ strapi }: { strapi: Core.Strapi }) => ({
-  getDeploymentData(pluginId) {
-    const deployments = strapi.plugins[pluginId].config('deployments') as Array<Instance>;
+  getDeploymentData() {
+    const deployments = strapi.plugins[PLUGIN_ID].config('deployments') as Array<Instance>;
 
     return deployments || [];
   },
