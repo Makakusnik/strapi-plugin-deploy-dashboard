@@ -16,21 +16,24 @@ import { PLUGIN_ID } from '../pluginId';
 import { useFetchClient } from '@strapi/admin/strapi-admin';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useLayoutEffect, useState } from 'react';
+import { RequestOptions, DeploymentData } from '../types';
+import { DeploymentItem } from '../components/DeploymentItem';
+import { EmptyPageComponent } from '../components/EmptyPageComponent';
 
 const HomePage = () => {
+  const [data, setData] = useState<DeploymentData[] | null>(null);
   const [ready, setReady] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { formatMessage } = useIntl();
 
-  const { get } = useFetchClient();
+  const { get, post } = useFetchClient();
   const navigate = useNavigate();
-
-  const handler = () => {
-  };
 
   useLayoutEffect(() => {
     get(`/${PLUGIN_ID}/`)
       .then((res) => {
+        console.log('@@@ res', res);
+        setData(res.data);
         setReady(true);
       })
       .catch((error) => {
@@ -58,7 +61,7 @@ const HomePage = () => {
 
         {!ready ? (
           <Flex width="100%" height="100%" minHeight="400px" justifyContent="center">
-            <Loader big>{formatMessage({ id: 'cloudflare-pages.home.busy' })}</Loader>
+            <Loader big>Loading</Loader>
           </Flex>
         ) : (
           <>
@@ -73,38 +76,15 @@ const HomePage = () => {
               </Alert>
             )}
 
-            <Grid.Root gap={4}>
-              <Box background="neutral0" width="fit-content" margin={50} padding={[6, 6]}>
-                <Flex gap={8}>
-                  <Flex
-                    alignItems="start"
-                    direction="column"
-                    padding={4}
-                    borderRadius={'3px'}
-                    borderColor={'neutral400'}
-                    width={'fit-content'}
-                  >
-                    <Typography variant="delta" textColor="neutral600" padding={[0, 0, 4, 0]}>
-                      Cloudflare pages
-                    </Typography>
-                    <Flex gap={4} direction="column">
-                      <Flex gap={4}>
-                        <Typography width="140px">Production</Typography>
-                        <Button variant="default" startIcon={<Upload />} onClick={handler}>
-                          Deploy
-                        </Button>
-                      </Flex>
-                      <Flex gap={4}>
-                        <Typography width="140px">Preview</Typography>
-                        <Button variant="default" startIcon={<Upload />} onClick={handler}>
-                          Deploy
-                        </Button>
-                      </Flex>
-                    </Flex>
-                  </Flex>
-                </Flex>
-              </Box>
-            </Grid.Root>
+            {data && data.length ? (
+              <Grid.Root gap={4}>
+                {data.map((item) => (
+                  <DeploymentItem key={item.id} {...item}></DeploymentItem>
+                ))}
+              </Grid.Root>
+            ) : (
+              <EmptyPageComponent />
+            )}
           </>
         )}
       </Flex>
