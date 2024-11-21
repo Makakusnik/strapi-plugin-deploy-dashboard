@@ -10,7 +10,7 @@ export default {
       icon: PluginIcon,
       intlLabel: {
         id: `${PLUGIN_ID}.plugin.name`,
-        defaultMessage: PLUGIN_ID,
+        defaultMessage: 'Deploy Dashboard',
       },
       Component: async () => {
         const { App } = await import('./pages/App');

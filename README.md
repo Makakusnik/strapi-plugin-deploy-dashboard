@@ -23,7 +23,7 @@ A Strapi plugin that allows you to manage deployment webhooks directly from a da
 2. Enable the plugin in your Strapi project by adding it to your `config/plugins.js` file:
    ```javascript
    module.exports = {
-     'deploy-dashboard': {
+     'strapi-plugin-deploy-dashboard': {
        enabled: true,
      },
    };
@@ -41,7 +41,7 @@ To contribute to the development of this plugin or customize it, follow these st
 2. Link the plugin source folder in your `config/plugins.js` file:
    ```javascript
    export default () => ({
-       'deploy-dashboard': {
+       'strapi-plugin-deploy-dashboard': {
            enabled: true,
            resolve: './src/plugins/strapi-plugin-deploy-dashboard'
        }
@@ -71,7 +71,7 @@ Add the following configuration to your `config/plugins.js` file:
 
 ```javascript
 module.exports = {
-  'deploy-dashboard': {
+  'strapi-plugin-deploy-dashboard': {
     config: {
       deployments: [
         {
