@@ -63,7 +63,7 @@
     "description": "Dashboard for deploying."
   },
   "name": "strapi-plugin-deploy-dashboard",
-  "description": "Dashboard for deploying.",
+  "description": "Dashboard for triggering webhooks.",
   "license": "MIT",
   "repository": {
     "type": "git",
