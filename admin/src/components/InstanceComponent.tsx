@@ -2,6 +2,7 @@ import { Button, Flex, IconButton, Typography, Dialog } from '@strapi/design-sys
 import { File, FileError, Loader, Upload, WarningCircle } from '@strapi/icons';
 import { RequestOptions } from '../types';
 import { useState } from 'react';
+import { CONTENT_TYPE_APPLICATION_JSON, CONTENT_TYPE_TEXT_HTML } from '../constants/ResponseTypes';
 
 export type InstanceProps = {
   id: string;

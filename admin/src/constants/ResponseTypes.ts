@@ -1,2 +1,4 @@
 const CONTENT_TYPE_TEXT_HTML = 'text/html';
 const CONTENT_TYPE_APPLICATION_JSON = 'application/json';
+
+export { CONTENT_TYPE_TEXT_HTML, CONTENT_TYPE_APPLICATION_JSON };
