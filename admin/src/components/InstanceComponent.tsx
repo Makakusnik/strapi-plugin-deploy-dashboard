@@ -17,45 +17,44 @@ export const InstanceComponent = ({ id, name, hookUrl, requestOptions }: Instanc
   const [ready, setReady] = useState<boolean>(true);
 
   const fetchHandler = async (hookUrl: string, customFetchOptions: RequestOptions) => {
-    try {
-      setReady(false);
-      setError(null);
-      setResponse(null);
+    setReady(false);
+    setError(null);
+    setResponse(null);
 
-      fetch(hookUrl, {
-        method: customFetchOptions?.method ?? 'POST',
-        headers: customFetchOptions?.headers,
-        body: customFetchOptions?.body ? JSON.stringify(customFetchOptions.body) : undefined,
-      })
-        .then(async (res) => {
-          switch (res?.headers?.get('Content-Type')) {
-            case CONTENT_TYPE_APPLICATION_JSON: {
-              const json = await res.json();
+    fetch(hookUrl, {
+      method: customFetchOptions?.method ?? 'POST',
+      headers: customFetchOptions?.headers,
+      body: customFetchOptions?.body ? JSON.stringify(customFetchOptions.body) : undefined,
+    })
+      .then(async (res) => {
+        switch (res?.headers?.get('Content-Type')?.split(';')[0]) {
+          case CONTENT_TYPE_APPLICATION_JSON: {
+            const json = await res.json();
 
-              return JSON.stringify(json);
-            }
-            case CONTENT_TYPE_TEXT_HTML: {
-              const text = await res.text();
-              const statusCode = res.status;
-
-              return JSON.stringify({ text, statusCode });
-            }
-            default: {
-              return JSON.stringify({ message: 'Unknown error', response: JSON.stringify(res) });
-            }
+            return JSON.stringify(json);
           }
-        })
-        .then((res) => {
-          setReady(true);
-          setResponse(res);
-        })
-        .catch((error) => {
-          setReady(true);
-          setError(JSON.stringify({ message: 'Unknown error.', error: error.message }));
-        });
+          case CONTENT_TYPE_TEXT_HTML: {
+            const text = await res.text();
+            const statusCode = res.status;
 
-      setResponse(response);
-    } catch (e) {}
+            return JSON.stringify({ text, statusCode });
+          }
+          default: {
+            return JSON.stringify({
+              message: 'Unknown response error',
+              response: JSON.stringify(res),
+            });
+          }
+        }
+      })
+      .then((res) => {
+        setReady(true);
+        setResponse(res);
+      })
+      .catch((error) => {
+        setReady(true);
+        setError(JSON.stringify({ message: 'Unknown code error.', error: error.message }));
+      });
   };
 
   return (
