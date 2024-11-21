@@ -32,7 +32,6 @@ const HomePage = () => {
   useLayoutEffect(() => {
     get(`/${PLUGIN_ID}/`)
       .then((res) => {
-        console.log('@@@ res', res);
         setData(res.data);
         setReady(true);
       })
