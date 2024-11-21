@@ -88,8 +88,8 @@ export const InstanceComponent = ({ id, name, hookUrl, requestOptions }: Instanc
         </Dialog.Trigger>
         <Dialog.Content>
           <Dialog.Header>{response ? 'Response' : error ? 'Error' : 'Unknown'}</Dialog.Header>
-          <Dialog.Body icon={<WarningCircle fill="danger600" />}>
-            <code style={{ fontSize: '1.2rem' }}>{response || error}</code>
+          <Dialog.Body style={{ display: 'block' }} icon={<WarningCircle fill="danger600" />}>
+            <code style={{ fontSize: '1.2rem', width: 'fit-content' }}>{response || error}</code>
           </Dialog.Body>
           <Dialog.Footer>
             <Dialog.Cancel>
