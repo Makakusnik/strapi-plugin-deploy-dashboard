@@ -2,6 +2,8 @@
 
 A Strapi plugin that allows you to manage deployment webhooks directly from a dashboard. Configure your deployment endpoints, trigger builds, and manage multiple environments with ease.
 
+Check it out on npm [npm](https://www.npmjs.com/package/strapi-plugin-deploy-dashboard)
+
 ---
 
 ## Features
